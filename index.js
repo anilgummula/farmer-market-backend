@@ -17,12 +17,12 @@ const PORT = process.env.PORT || 5000;
 
 // app.use(express.json());
 app.use(bodyParser.json());
-// app.use(cors());
-// const cors = require('cors');
 app.use(cors({
-  origin: ['https://farmarket.netlify.app'], // Your frontend domain
-  credentials: true,
-}));
+    origin: 'https://farmarket.netlify.app',  // Allow requests from Netlify domain
+    methods: 'GET,POST,PUT,DELETE',  // Allow these methods
+    allowedHeaders: 'Content-Type,Authorization',  // Allow these headers
+    credentials: true,  // Allow cookies and credentials
+  }));
 app.use('/auth',AuthRouter);
 app.use('/products',ProductRouter);
 
