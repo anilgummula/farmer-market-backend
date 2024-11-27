@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const ensureAuthenticated = (req,res,next) =>{
+    console.log("auth entered");
+    
     const auth = req.headers['authorization'];
     if(!auth){
         return res.status(403)

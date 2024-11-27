@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const AuthRouter = require('./Routes/AuthRouter.js');
-const FarmerRouter = require('./Routes/farmer.js'); // Add farmer routes
-const RetailerRouter = require('./Routes/retailer.js'); // Add retailer routes
+const AuthRouter = require('./Routes/AuthRouter');
+const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
+const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
 
 require('dotenv').config();
 require('./models/db.js'); // Initialize database connection
