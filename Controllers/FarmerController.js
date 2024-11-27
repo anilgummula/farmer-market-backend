@@ -9,14 +9,14 @@ exports.addProduct = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Product image is required!' });
     }
 
-    const imageUrl = req.file.path; // Assuming you're using multer for file uploads
+    // const imageUrl = req.file.path; // Assuming you're using multer for file uploads
 
     const product = new Product({
       name: productName,
       price,
       quantity,
       category,
-      image: imageUrl,
+    //   image: imageUrl,
     });
 
     await product.save();
