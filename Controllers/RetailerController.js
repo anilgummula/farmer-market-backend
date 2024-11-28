@@ -5,6 +5,7 @@ const Order = require('../models/Order');
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().populate('farmer', 'username');
+    console.log(products);
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch products 123' });
