@@ -56,7 +56,7 @@ exports.getMyOrders = async (req, res) => {
   }
 
   try {
-    const orders = await Order.find({ buyer: req.user._id }).populate('product', 'name price');
+    const orders = await Order.find({ buyer: req.user._id });
     res.json(orders);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch orders' });
