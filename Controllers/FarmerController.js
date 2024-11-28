@@ -6,8 +6,8 @@ exports.addProduct = async (req, res) => {
   try {
     const { productName, price, quantity, category } = req.body;
     const imageUrl = req.file ? req.file.path : null; // Get file path if uploaded
-    console.log('File:', req.file);
     console.log('Body:', req.body);
+    console.log('File:', req.file);
     console.log('User:', req.user);
 
     const product = new Product({
