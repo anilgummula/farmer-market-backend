@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const AuthRouter = require('./Routes/AuthRouter.js');
-const FarmerRouter = require('./Routes/farmer.js'); // Add farmer routes
-const RetailerRouter = require('./Routes/retailer.js'); // Add retailer routes
+const AuthRouter = require('./Routes/AuthRouter');
+const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
+const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
 
 require('dotenv').config();
 require('./models/db.js'); // Initialize database connection
@@ -26,11 +26,6 @@ app.use(
 app.use('/auth', AuthRouter); // Authentication routes
 app.use('/farmer', FarmerRouter); // Farmer-specific routes
 app.use('/retailer', RetailerRouter); // Retailer-specific routes
-
-// Health check endpoint
-app.get('/ping', (req, res) => {
-  res.send('Server is running!');
-});
 
 // Start server
 app.listen(PORT, () => {

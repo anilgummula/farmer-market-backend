@@ -5,3 +5,6 @@ const ensureAuthenticated = require('../Middlewares/Auth');
 router.get('/products', ensureAuthenticated, getAllProducts);
 router.post('/buy-product/:productId', ensureAuthenticated, buyProduct);
 router.get('/my-orders', ensureAuthenticated, getMyOrders);
+
+
+module.exports = router;
