@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const ensureAuthenticated = (req, res, next) => {
   // Assuming the JWT is stored in a cookie or header
   const token = req.headers['authorization'];
+  console.log('Authorization Header:', req.headers['authorization']);
 
   if (!token) {
     return res.status(403).json({
