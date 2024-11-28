@@ -4,24 +4,29 @@ const Order = require('../models/Order'); // Ensure Order model is required if u
 // Add a new product
 exports.addProduct = async (req, res) => {
   try {
+    console.log("start");
     const { productName, price, quantity, category } = req.body;
     // const imageUrl = req.file ? req.file.path : null; // Get file path if uploaded
     // console.log('Body:', req.body);
     // console.log('File:', req.file);
     // console.log('User:', req.user);
+    console.log("start req.body end ");
     console.log('File path:', req.file ? req.file.path : 'No file uploaded');
     console.log('Filename:', req.file ? req.file.filename : 'No filename');
-
+    
+    console.log("start req.file end ");
     // Generate public image URL
     const imageUrl = req.file ? `/uploads/products/${req.file.filename}` : null;
+    console.log("start req.file imageurl end ");
     const product = new Product({
-      name: productName,
-      price,
-      quantity,
-      category,
-      image: imageUrl,
-      farmer: req.user.id, // Assuming farmer ID is in the JWT token
+        name: productName,
+        price,
+        quantity,
+        category,
+        image: imageUrl,
+        farmer: req.user.id, // Assuming farmer ID is in the JWT token
     });
+    console.log("start product end ");
 
     await product.save();
 
