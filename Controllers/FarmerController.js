@@ -1,6 +1,26 @@
 const Product = require('../models/Product');
 const Order = require('../models/Order'); // Ensure Order model is required if used in manageOrder
 
+// Fetch products listed by the farmer
+exports.getMyProducts = async (req, res) => {
+  try {
+    const products = await Product.find({ farmer: req.user._id });
+    res.status(200).json({ success: true, products });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to fetch products!', error: err.message });
+  }
+};
+
+// Get orders for the logged-in farmer
+exports.getMyOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({ farmer: req.user._id }).populate('product');
+    res.status(200).json({ success: true, orders });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to fetch orders!', error: err.message });
+  }
+};
+
 // Add a new product
 exports.addProduct = async (req, res) => {
   try {
@@ -19,16 +39,6 @@ exports.addProduct = async (req, res) => {
     res.status(201).json({ success: true, message: 'Product added successfully!' });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Internal server error in fc !', error: err });
-  }
-};
-
-// Fetch products listed by the farmer
-exports.getMyProducts = async (req, res) => {
-  try {
-    const products = await Product.find({ farmer: req.user._id });
-    res.status(200).json({ success: true, products });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Failed to fetch products!', error: err.message });
   }
 };
 
