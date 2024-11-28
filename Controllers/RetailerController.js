@@ -4,7 +4,7 @@ const Order = require('../models/Order');
 // Get all products listed by farmers
 exports.getAllProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate('farmer', 'username');
+        const products = await Product.find();
         console.log('Products retrieved:', products);
         res.json(products); // Ensure products are sent as an object with `products` key
       } catch (error) {
