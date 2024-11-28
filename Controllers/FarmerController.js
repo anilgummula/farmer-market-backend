@@ -18,7 +18,7 @@ exports.addProduct = async (req, res) => {
 
     res.status(201).json({ success: true, message: 'Product added successfully!' });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Internal server error in fc !', error: err.message });
+    res.status(500).json({ success: false, message: 'Internal server error in fc !', error: err });
   }
 };
 
