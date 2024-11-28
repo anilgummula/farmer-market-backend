@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
-require('./models/db.js'); // Initialize database connection
+const bodyParser = require('body-parser');
 const AuthRouter = require('./Routes/AuthRouter');
 const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
 const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
+
+require('dotenv').config();
+require('./models/db.js'); // Initialize database connection
 
 const app = express();
 const PORT = process.env.PORT || 5000;
