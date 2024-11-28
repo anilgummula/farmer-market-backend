@@ -5,11 +5,13 @@ const Order = require('../models/Order'); // Ensure Order model is required if u
 exports.addProduct = async (req, res) => {
   try {
     const { productName, price, quantity, category } = req.body;
-    const imageUrl = req.file ? req.file.path : null; // Get file path if uploaded
+    // const imageUrl = req.file ? req.file.path : null; // Get file path if uploaded
     console.log('Body:', req.body);
     console.log('File:', req.file);
     console.log('User:', req.user);
 
+    // Generate public image URL
+    const imageUrl = req.file ? `/uploads/products/${req.file.filename}` : null;
     const product = new Product({
       name: productName,
       price,

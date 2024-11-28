@@ -1,15 +1,28 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+require('dotenv').config();
+require('./models/db.js'); // Initialize database connection
 const AuthRouter = require('./Routes/AuthRouter');
 const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
 const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
 
-require('dotenv').config();
-require('./models/db.js'); // Initialize database connection
-
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+
+// Ensure 'uploads/products' directory exists
+const uploadDir = path.join(__dirname, 'uploads/products');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+  console.log(`Directory ${uploadDir} created.`);
+}
+
+// Serve static files from 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 
 // Middleware setup
 app.use(express.json())
