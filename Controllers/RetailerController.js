@@ -32,10 +32,11 @@ exports.buyProduct = async (req, res) => {
 
     // Create an order
     const order = new Order({
-      buyer: req.user._id,
-      product: productId,
-      quantity,
-      totalAmount,
+        name :product.name,
+        buyer: req.user._id,
+        product: productId,
+        quantity,
+        totalAmount,
     });
     await order.save();
 
