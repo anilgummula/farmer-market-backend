@@ -12,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware setup
+app.use(express.json())
 app.use(bodyParser.json());
 // app.use(
 //   cors({
