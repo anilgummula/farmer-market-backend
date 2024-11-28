@@ -5,10 +5,10 @@ const Order = require('../models/Order');
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        console.log('Products retrieved:', products);
+        // console.log('Products retrieved:', products);
         res.json(products); // Ensure products are sent as an object with `products` key
       } catch (error) {
-    console.error('Error fetching products:', error);
+    // console.error('Error fetching products:', error);
     res.status(500).json({ error: 'Failed to fetch products 123' });
   }
 };
