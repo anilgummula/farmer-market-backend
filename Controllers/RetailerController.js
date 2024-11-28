@@ -7,7 +7,7 @@ exports.getAllProducts = async (req, res) => {
     const products = await Product.find().populate('farmer', 'username');
     res.json(products);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch products' });
+    res.status(500).json({ error: 'Failed to fetch products 123' });
   }
 };
 
