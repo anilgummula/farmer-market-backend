@@ -11,7 +11,7 @@ exports.addProduct = async (req, res) => {
       price,
       quantity,
       category,
-      farmer: req.user.id, // Assuming farmer ID is in the JWT token
+      farmer: req.user._id, // Assuming farmer ID is in the JWT token
     });
 
     await product.save();
@@ -25,7 +25,7 @@ exports.addProduct = async (req, res) => {
 // Fetch products listed by the farmer
 exports.getMyProducts = async (req, res) => {
   try {
-    const products = await Product.find({ farmer: req.user.id });
+    const products = await Product.find({ farmer: req.user._id });
     res.status(200).json({ success: true, products });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch products!', error: err.message });
