@@ -13,7 +13,7 @@ exports.addProduct = async (req, res) => {
     console.log('Filename:', req.file ? req.file.filename : 'No filename');
 
     // Generate public image URL
-    // const imageUrl = req.file ? `/uploads/products/${req.file.filename}` : null;
+    const imageUrl = req.file ? `/uploads/products/${req.file.filename}` : null;
     const product = new Product({
       name: productName,
       price,
