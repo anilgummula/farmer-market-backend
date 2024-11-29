@@ -14,7 +14,7 @@ exports.getMyProducts = async (req, res) => {
 // Get orders for the logged-in farmer
 exports.getMyOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ farmer: req.user._id }).populate('product');
+    const orders = await Order.find({ farmer: req.user._id });
     res.status(200).json({ success: true, orders });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch orders!', error: err.message });
