@@ -1,3 +1,4 @@
+const Product = require('../models/user');
 const Product = require('../models/Product');
 const Order = require('../models/Order'); // Ensure Order model is required if used in manageOrder
 
@@ -46,9 +47,18 @@ exports.addProduct = async (req, res) => {
 exports.manageOrder = async (req, res) => {
   try {
     const { orderId } = req.params;
-    const { status } = req.body; // 'accepted' or 'rejected'
-
+    const { status } = req.body; // 'Accepted' or 'Rejected'
+    
     const order = await Order.findById(orderId);
+    if(status === "Rejected"){
+        const productId = order.product;
+        const orderQunatity = order.quantity;
+        // const buyerId = order.buyer;
+        // const user = await user.findById(buyerId);
+        const product = await Product.findById(productId);
+        product.quantity += orderQunatity;
+        product.save();
+    }
     if (!order) return res.status(404).json({ success: false, message: 'Order not found!' });
 
     order.status = status;
