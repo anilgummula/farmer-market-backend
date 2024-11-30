@@ -66,7 +66,7 @@ exports.manageOrder = async (req, res) => {
         // const user = await user.findById(buyerId);
         const product = await Product.findById(productId);
         product.quantity += orderQunatity;
-        product.save();
+        await product.save();
     }
     if(status === "Accepted"){
         const productId = order.product;
@@ -74,10 +74,11 @@ exports.manageOrder = async (req, res) => {
         const orderQunatity = order.quantity;
         const earnings = (orderQunatity) * (product.price);
         const user = await User.findById(order.farmer);
-        user.myEarnings +=earnings; 
+        user.myEarnings += earnings; 
+        await user.save();
     }
 
-    if (!order) return res.status(404).json({ success: false, message: 'Order not found!' , earnings : earnings});
+    if (!order) return res.status(404).json({ success: false, message: 'Order not found!'});
 
     order.status = status;
     await order.save();
