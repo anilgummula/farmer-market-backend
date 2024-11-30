@@ -6,8 +6,8 @@ const Order = require('../models/Order'); // Ensure Order model is required if u
 exports.getMyProducts = async (req, res) => {
   try {
     const products = await Product.find({ farmer : req.user._id });
-    const product = await Product.findOne({farmer : req.user._id});
-    const farmerDetails =await User.findById(product.farmer);
+    // const product = await Product.findOne({farmer : req.user._id});
+    const farmerDetails =await User.findById(req.user._id);
     res.status(200).json({ success: true, products ,farmerDetails : farmerDetails});
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch products!', error: err.message });
