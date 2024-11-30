@@ -1,4 +1,4 @@
-const Product = require('../models/user');
+// const user = require('../models/user');
 const Product = require('../models/Product');
 const Order = require('../models/Order'); // Ensure Order model is required if used in manageOrder
 
