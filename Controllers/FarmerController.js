@@ -1,4 +1,4 @@
-// const user = require('../models/user');
+// const User = require('../models/user');
 const Product = require('../models/Product');
 const Order = require('../models/Order'); // Ensure Order model is required if used in manageOrder
 
@@ -16,7 +16,12 @@ exports.getMyProducts = async (req, res) => {
 exports.getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ farmer: req.user._id });
-    res.status(200).json({ success: true, orders });
+    
+    // const buyerId = orders.buyer; 
+    // const buyer = await User.findById(buyerId);
+    // const buyerName = buyer.username;
+
+    res.status(200).json({ success: true,orders : orders });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to fetch orders!', error: err.message });
   }
@@ -50,6 +55,8 @@ exports.manageOrder = async (req, res) => {
     const { status } = req.body; // 'Accepted' or 'Rejected'
     
     const order = await Order.findById(orderId);
+
+    // change remaining quantity of products if order rejected
     if(status === "Rejected"){
         const productId = order.product;
         const orderQunatity = order.quantity;
@@ -59,6 +66,7 @@ exports.manageOrder = async (req, res) => {
         product.quantity += orderQunatity;
         product.save();
     }
+
     if (!order) return res.status(404).json({ success: false, message: 'Order not found!' });
 
     order.status = status;
