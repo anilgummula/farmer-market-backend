@@ -34,7 +34,7 @@ exports.addProduct = async (req, res) => {
   try {
     const { productName, price, quantity, category} = req.body;
     
-    const image = req.file ;
+    const image = req.file || null ;
     if (!image) {
         return res.status(400).json({ success: false, message: "Image upload is required!" });
     }
@@ -44,7 +44,7 @@ exports.addProduct = async (req, res) => {
       price,
       quantity,
       category,
-      image : image.filename,
+      image : image,
       farmer: req.user._id, // Assuming farmer ID is in the JWT token
     });
 
