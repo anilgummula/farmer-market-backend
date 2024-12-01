@@ -44,7 +44,7 @@ exports.addProduct = async (req, res) => {
       price,
       quantity,
       category,
-      image : image,
+      image : image.filename,
       farmer: req.user._id, // Assuming farmer ID is in the JWT token
     });
 
