@@ -33,7 +33,8 @@ exports.getMyOrders = async (req, res) => {
 exports.addProduct = async (req, res) => {
   try {
     const { productName, price, quantity, category} = req.body;
-    const image = req.file[0];
+    
+    const image = req.file ? req.file.path : null;
 
     const product = new Product({
       name: productName,
