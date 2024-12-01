@@ -28,14 +28,12 @@ const PORT = process.env.PORT || 5000;
 // Middleware setup
 app.use(express.json())
 app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: 'https://farmarket.netlify.app', // Allow requests from Netlify domain
-    methods: 'GET,POST,PUT,DELETE', // Allow these methods
-    allowedHeaders: 'Content-Type,authorization,Authorization', // Allow these headers
-    credentials: true, // Allow cookies and credentials
-  })
-);
+app.use(cors({
+    origin: '*',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: ['Content-Type', 'authorization', 'Authorization'],
+    // credentials: true,
+}));
 // app.use(cors());
 
 // Routes
