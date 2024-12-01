@@ -32,13 +32,15 @@ exports.getMyOrders = async (req, res) => {
 // Add a new product
 exports.addProduct = async (req, res) => {
   try {
-    const { productName, price, quantity, category } = req.body;
+    const { productName, price, quantity, category} = req.body;
+    const image = req.file;
 
     const product = new Product({
       name: productName,
       price,
       quantity,
       category,
+      image,
       farmer: req.user._id, // Assuming farmer ID is in the JWT token
     });
 
