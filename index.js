@@ -41,15 +41,15 @@ app.use((err, req, res, next) => {
 // Middleware setup
 app.use(express.json())
 app.use(bodyParser.json());
-// app.use(
-//   cors({
-//     origin: 'https://farmarket.netlify.app', // Allow requests from Netlify domain
-//     methods: 'GET,POST,PUT,DELETE', // Allow these methods
-//     allowedHeaders: 'Content-Type,authorization,Authorization', // Allow these headers
-//     credentials: true, // Allow cookies and credentials
-//   })
-// );
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://farmarket.netlify.app', // Allow requests from Netlify domain
+    methods: 'GET,POST,PUT,DELETE', // Allow these methods
+    allowedHeaders: 'Content-Type,authorization,Authorization', // Allow these headers
+    credentials: true, // Allow cookies and credentials
+  })
+);
+// app.use(cors());
 
 // Routes
 app.use('/auth', AuthRouter); // Authentication routes
