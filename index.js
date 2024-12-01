@@ -13,6 +13,18 @@ require('./models/db.js'); // Initialize database connection
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+      // Handle multer-specific errors
+      return res.status(400).json({ message: err.message });
+    } else if (err) {
+      // Handle other errors
+      return res.status(400).json({ message: err.message });
+    }
+    next();
+  });
+  
+
 
 // Ensure 'uploads/products' directory exists
 // const uploadDir = path.join(__dirname, 'uploads/products');
