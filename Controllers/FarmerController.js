@@ -32,23 +32,19 @@ exports.getMyOrders = async (req, res) => {
 // Add a new product
 exports.addProduct = async (req, res) => {
   try {
-    const { productName, price, quantity, category} = req.body;
-    
-    // const image = req.file || null ;
-    // if (!image) {
-    //     return res.status(400).json({ success: false, message: "Image upload is required!" });
-    // }
+        const { productName, price, quantity, category } = req.body;
+        if (!productName || !price || !quantity || !category) {
+        return res.status(400).json({ success: false, message: 'All fields are required!' });
+        }
+        const product = new Product({
+            name: productName,
+            price,
+            quantity,
+            category,
+            farmer: req.user._id, // Assuming farmer ID is in the JWT token
+        });
 
-    const product = new Product({
-      name: productName,
-      price,
-      quantity,
-      category,
-    //   image : image,
-      farmer: req.user._id, // Assuming farmer ID is in the JWT token
-    });
-
-    await product.save();
+        await product.save();
 
     res.status(201).json({ success: true, message: 'Product added successfully!' });
   } catch (err) {
