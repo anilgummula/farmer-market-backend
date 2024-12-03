@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const AuthRouter = require('./Routes/AuthRouter');
 const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
 const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
-const ProfileRouter = require('./Routes/user'); // Add retailer routes
+const ProfileRouter = require('./Routes/UserRouter'); // Add retailer routes
 
 
 require('dotenv').config();
