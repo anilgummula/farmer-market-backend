@@ -1,7 +1,7 @@
 // Controllers/UserController.js
 const User = require('../models/user');
 
-exports.getProfile = async (req, res) => {
+const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);
     if (!user) {
@@ -14,7 +14,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-exports.updateProfile = async (req, res) => {
+const updateProfile = async (req, res) => {
   try {
     const { username, email, address } = req.body;
     const updatedUser = await User.findByIdAndUpdate(
@@ -30,4 +30,10 @@ exports.updateProfile = async (req, res) => {
     console.error(err);
     res.status(500).json({ message: 'Error updating profile' });
   }
+};
+
+
+module.exports = {
+    getProfile,
+    updateProfile
 };
