@@ -5,6 +5,8 @@ const AuthRouter = require('./Routes/AuthRouter');
 const FarmerRouter = require('./Routes/farmer'); // Add farmer routes
 const RetailerRouter = require('./Routes/retailer'); // Add retailer routes
 const ProfileRouter = require('./Routes/UserRouter'); // Add retailer routes
+const ensureAuthenticated = require('./Middlewares/Auth.js');
+const { getProfile, updateProfile } = require('./Controllers/UserController.js');
 
 
 require('dotenv').config();
@@ -22,7 +24,8 @@ app.use(cors());
 app.use('/auth', AuthRouter); // Authentication routes
 app.use('/farmer', FarmerRouter); // Farmer-specific routes
 app.use('/retailer', RetailerRouter); // Retailer-specific routes
-app.use('/profile', ProfileRouter); // Retailer-specific routes
+app.get('/profile/view', ensureAuthenticated,getProfile); // Retailer-specific routes
+app.post('/profile/update', ensureAuthenticated,updateProfile); // Retailer-specific routes
 
 
 // Start server
