@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const UserController = require('../Controllers/UserController');
-const { getProfile, updateProfile } = UserController;
+const { getProfile, updateProfile } = require('../Controllers/UserController');
 const { ensureAuthenticated } = require('../Middlewares/Auth');
 
+// Define routes
 router.get('/view', ensureAuthenticated, getProfile);
 router.put('/update', ensureAuthenticated, updateProfile);
 
-module.exports = router;
+module.exports = router; // Ensure this is included
