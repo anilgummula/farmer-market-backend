@@ -23,7 +23,7 @@ app.use('/auth', AuthRouter); // Authentication routes
 app.use('/farmer', FarmerRouter); // Farmer-specific routes
 app.use('/retailer', RetailerRouter); // Retailer-specific routes
 app.use('/profile', ProfileRouter); // Retailer-specific routes
-// app.use('/profile', ProfileRouter); // Retailer-specific routes
+
 
 // Start server
 app.listen(PORT, () => {
